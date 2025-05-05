@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiftana | Premium Cleaning Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            overflow-x: hidden;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 50%, #ffffff 100%);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .testimonial-avatar {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-avatar:hover {
+            transform: scale(1.05) rotateY(10deg);
+        }
+        
+        #threejs-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .rotate-y {
+            animation: rotateY 8s linear infinite;
+        }
+        
+        @keyframes rotateY {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+        
+        .sparkle {
+            position: relative;
+        }
+        
+        .sparkle::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #f9fafb, #e0f2fe, #f0fdf4, #f9fafb);
+            background-size: 400% 400%;
+            z-index: -1;
+            border-radius: inherit;
+            animation: sparkle 3s ease infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes sparkle {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center sparkle">
+                            <i class="fas fa-broom text-blue-500 text-xl"></i>
+                        </div>
+                        <span class="ml-2 text-xl font-bold text-gray-800">Swift<span class="text-blue-500">ana
+                            
+                        </span></span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#home" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="#services" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Services</a>
+                    <a href="#about" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">About Us</a>
+                    <a href="#pricing" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Pricing</a>
+                    <a href="#testimonials" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Testimonials</a>
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-all transform hover:scale-105">
+                        Book Now <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg pt-24 pb-16 md:pt-32 md:pb-24 relative overflow-hidden">
+        <div id="threejs-container"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
+                <div class="mt-12 sm:mt-16 lg:mt-0">
+                    <div class="pl-4 -ml-4 sm:pl-6 md:pl-8">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                            Hastle Free <span class="text-blue-500">High Quality Cleaning</span> Swiftly with Swiftana
+                        </h1>
+                        <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-lg">
+                            Customer-friendly, fast and affordable, tailored cleaning solutions for busy households and growing businesses in Melbourne. 
+                        </p>
+                        <div class="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-lg font-medium transition-all transform hover:scale-105 shadow-lg">
+                                Book Now in 60 Seconds
+                            </button>
+                            <button class="border-2 border-blue-500 text-blue-500 hover:bg-blue-50 px-6 py-3 rounded-full text-lg font-medium transition-all transform hover:scale-105">
+                                <i class="fas fa-phone-alt mr-2"></i> 0466275631 
+                            </button>
+                        </div>
+                        <div class="mt-8 flex items-center">
+                            <div class="flex -space-x-2">
+                                <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white" src="https://randomuser.me/api/portraits/women/12.jpg" alt="">
+                                <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white" src="https://randomuser.me/api/portraits/men/33.jpg" alt="">
+                                <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white" src="https://randomuser.me/api/portraits/women/45.jpg" alt="">
+                            </div>
+                            <div class="ml-4">
+                                <div class="flex items-center">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
+                                    <span class="ml-1 text-gray-600">500+ Reviews</span>
+                                </div>
+                                <p class="text-sm text-gray-500">Trusted by Melbourne families since 2012</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 sm:mt-16 lg:mt-0 relative">
+                    <div class="relative mx-auto w-full max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-none lg:px-0">
+                        <div class="aspect-w-10 aspect-h-6 sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none">
+                            <div class="relative floating">
+                                <div class="absolute inset-0 bg-blue-100 rounded-3xl -rotate-6"></div>
+                                <div class="relative rounded-3xl bg-white shadow-xl overflow-hidden rotate-3">
+                                    <img class="w-full h-auto" src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Clean home">
+                                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                                        <h3 class="text-xl font-bold text-white">Before & After</h3>
+                                        <div class="mt-2 flex justify-between">
+                                            <span class="text-red-300"><i class="fas fa-times-circle mr-1"></i> Dirty</span>
+                                            <span class="text-green-300"><i class="fas fa-check-circle mr-1"></i> Clean</span>
+                                        </div>
+                                        <div class="mt-2 w-full bg-gray-300 rounded-full h-2.5">
+                                            <div class="bg-blue-500 h-2.5 rounded-full" style="width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="bg-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                <div class="flex flex-col items-center p-4 rounded-lg bg-gray-50">
+                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-2">
+                        <i class="fas fa-leaf text-blue-500 text-xl"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-900">Eco-Certified</span>
+                </div>
+                <div class="flex flex-col items-center p-4 rounded-lg bg-gray-50">
+                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-2">
+                        <i class="fas fa-shield-alt text-blue-500 text-xl"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-900">Fully Insured</span>
+                </div>
+                <div class="flex flex-col items-center p-4 rounded-lg bg-gray-50">
+                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-2">
+                        <i class="fas fa-map-marker-alt text-blue-500 text-xl"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-900">Melbourne-Owned</span>
+                </div>
+                <div class="flex flex-col items-center p-4 rounded-lg bg-gray-50">
+                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-2">
+                        <i class="fas fa-star text-blue-500 text-xl"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-900">5-Star Rated</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-gray-900">Our Premium <span class="text-blue-500">Cleaning Services</span></h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+                    Tailored solutions for every space in Melbourne
+                </p>
+            </div>
+            
+            <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Service Card 1 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
+                    <div class="relative h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Residential Cleaning">
+                        <div class="absolute top-4 right-4 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg">
+                            <i class="fas fa-home text-blue-500 text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">Residential Cleaning</h3>
+                        <p class="mt-2 text-gray-600">
+                            Complete home cleaning with attention to every detail, using eco-friendly products.
+                        </p>
+                        <div class="mt-4 flex items-center">
+                            <span class="text-blue-500 font-bold text-lg">From $120</span>
+                            <button class="ml-auto text-blue-500 hover:text-blue-600 font-medium flex items-center">
+                                Learn More <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
+                    <div class="relative h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Commercial Cleaning">
+                        <div class="absolute top-4 right-4 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg">
+                            <i class="fas fa-building text-blue-500 text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">Commercial Cleaning</h3>
+                        <p class="mt-2 text-gray-600">
+                            Professional cleaning for offices, retail spaces, and commercial properties across Melbourne.
+                        </p>
+                        <div class="mt-4 flex items-center">
+                            <span class="text-blue-500 font-bold text-lg">From $250</span>
+                            <button class="ml-auto text-blue-500 hover:text-blue-600 font-medium flex items-center">
+                                Learn More <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
+                    <div class="relative h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Carpet Cleaning">
+                        <div class="absolute top-4 right-4 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg">
+                            <i class="fas fa-rug text-blue-500 text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">Carpet & Upholstery</h3>
+                        <p class="mt-2 text-gray-600">
+                            Deep cleaning for carpets, rugs, and furniture using steam cleaning technology.
+                        </p>
+                        <div class="mt-4 flex items-center">
+                            <span class="text-blue-500 font-bold text-lg">From $90</span>
+                            <button class="ml-auto text-blue-500 hover:text-blue-600 font-medium flex items-center">
+                                Learn More <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-lg font-medium transition-all transform hover:scale-105 shadow-lg">
+                    View All Services <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                <div class="mb-12 lg:mb-0">
+                    <h2 class="text-3xl font-bold text-gray-900">Why Choose <span class="text-blue-500">MelbourneSparkle</span></h2>
+                    <p class="mt-4 text-lg text-gray-600">
+                        We go beyond basic cleaning to deliver exceptional results for our Melbourne clients.
+                    </p>
+                    
+                    <div class="mt-8 space-y-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-500">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Eco-Friendly Products</h3>
+                                <p class="mt-1 text-gray-600">
+                                    Safe for your family, pets, and the environment. No harsh chemicals.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-500">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Trained Professionals</h3>
+                                <p class="mt-1 text-gray-600">
+                                    Our cleaners undergo rigorous training and background checks.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-500">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Flexible Scheduling</h3>
+                                <p class="mt-1 text-gray-600">
+                                    Available 7 days a week to fit your busy Melbourne lifestyle.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-500">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">100% Satisfaction</h3>
+                                <p class="mt-1 text-gray-600">
+                                    Not happy? We'll come back and fix it at no extra cost.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="relative mx-auto w-full max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-none lg:px-0">
+                        <div class="aspect-w-10 aspect-h-6 sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none">
+                            <div class="relative floating">
+                                <div class="absolute inset-0 bg-blue-100 rounded-3xl -rotate-6"></div>
+                                <div class="relative rounded-3xl bg-white shadow-xl overflow-hidden rotate-3">
+                                    <img class="w-full h-auto" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Professional cleaner">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
+                                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <img class="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/women/32.jpg" alt="Cleaner">
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-white">Sarah Johnson</p>
+                                                <div class="flex space-x-1">
+                                                    <i class="fas fa-star text-yellow-400"></i>
+                                                    <i class="fas fa-star text-yellow-400"></i>
+                                                    <i class="fas fa-star text-yellow-400"></i>
+                                                    <i class="fas fa-star text-yellow-400"></i>
+                                                    <i class="fas fa-star text-yellow-400"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-gray-900">Simple, Transparent <span class="text-blue-500">Pricing</span></h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+                    No hidden fees. Quality service at fair prices.
+                </p>
+            </div>
+            
+            <div class="mt-12 space-y-4">
+                <div class="flex justify-center">
+                    <div class="inline-flex rounded-md shadow-sm" role="group">
+                        <button type="button" class="px-4 py-2 text-sm font-medium rounded-l-lg bg-blue-500 text-white">
+                            Residential
+                        </button>
+                        <button type="button" class="px-4 py-2 text-sm font-medium bg-white text-gray-700 hover:bg-gray-50">
+                            Commercial
+                        </button>
+                        <button type="button" class="px-4 py-2 text-sm font-medium rounded-r-lg bg-white text-gray-700 hover:bg-gray-50">
+                            Specialty
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <!-- Pricing Card 1 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900">Basic Clean</h3>
+                            <p class="mt-2 text-gray-600">
+                                Perfect for regular maintenance
+                            </p>
+                            <div class="mt-4">
+                                <span class="text-4xl font-bold text-gray-900">$120</span>
+                                <span class="text-gray-500">/ session</span>
+                            </div>
+                            <button class="mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full font-medium transition-all transform hover:scale-105">
+                                Book Now
+                            </button>
+                        </div>
+                        <div class="border-t border-gray-200 px-6 py-4">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">Dusting & vacuuming all surfaces</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">Kitchen & bathroom cleaning</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">Floor mopping</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-times text-gray-300"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-500">Window cleaning</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-times text-gray-300"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-500">Deep cleaning appliances</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Pricing Card 2 (Featured) -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 transform hover:scale-105 border-2 border-blue-500">
+                        <div class="bg-blue-500 px-6 py-3 text-center">
+                            <span class="text-white font-medium">MOST POPULAR</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900">Standard Clean</h3>
+                            <p class="mt-2 text-gray-600">
+                                Our most popular package
+                            </p>
+                            <div class="mt-4">
+                                <span class="text-4xl font-bold text-gray-900">$180</span>
+                                <span class="text-gray-500">/ session</span>
+                            </div>
+                            <button class="mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full font-medium transition-all transform hover:scale-105">
+                                Book Now
+                            </button>
+                        </div>
+                        <div class="border-t border-gray-200 px-6 py-4">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">Everything in Basic Clean</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">Window cleaning (interior)</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">Appliance exterior cleaning</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">Mirror & glass polishing</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-times text-gray-300"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-500">Deep cleaning appliances</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Pricing Card 3 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900">Deep Clean</h3>
+                            <p class="mt-2 text-gray-600">
+                                For thorough, detailed cleaning
+                            </p>
+                            <div class="mt-4">
+                                <span class="text-4xl font-bold text-gray-900">$250</span>
+                                <span class="text-gray-500">/ session</span>
+                            </div>
+                            <button class="mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full font-medium transition-all transform hover:scale-105">
+                                Book Now
+                            </button>
+                        </div>
+                        <div class="border-t border-gray-200 px-6 py-4">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">Everything in Standard Clean</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">Deep cleaning appliances</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">Inside cabinets & drawers</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">Baseboard cleaning</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">Light fixture dusting</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <button class="border-2 border-blue-500 text-blue-500 hover:bg-blue-50 px-6 py-3 rounded-full text-lg font-medium transition-all transform hover:scale-105">
+                        Custom Quote <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-gray-900">What Melbourne <span class="text-blue-500">Clients Say</span></h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+                    Don't just take our word for it - hear from our happy customers
+                </p>
+            </div>
+            
+            <div class="mt-12">
+                <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-12 w-12 rounded-full testimonial-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah K.">
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Sarah K.</h3>
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <span class="ml-1 text-gray-500">Richmond</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-gray-600">
+                            "I've tried several cleaning services in Melbourne, but MelbourneSparkle is by far the best. They're thorough, reliable, and use eco-friendly products that don't irritate my allergies."
+                        </p>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-12 w-12 rounded-full testimonial-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T.">
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Michael T.</h3>
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <span class="ml-1 text-gray-500">South Yarra</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-gray-600">
+                            "As a busy professional, I don't have time to clean. MelbourneSparkle has been a lifesaver. My apartment has never looked better, and they're always on time."
+                        </p>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-12 w-12 rounded-full testimonial-avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya M.">
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Priya M.</h3>
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <span class="ml-1 text-gray-500">Footscray</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-gray-600">
+                            "After having a baby, keeping the house clean became impossible. MelbourneSparkle's team is so gentle with our space and uses products safe for our newborn. Worth every penny!"
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-lg font-medium transition-all transform hover:scale-105 shadow-lg">
+                        Read More Reviews <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Areas -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-gray-900">Serving All of <span class="text-blue-500">Melbourne</span></h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+                    We proudly service these Melbourne suburbs and surrounding areas
+                </p>
+            </div>
+            
+            <div class="mt-12">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                        <i class="fas fa-map-marker-alt text-blue-500 text-xl mb-2"></i>
+                        <span class="font-medium">Richmond</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                        <i class="fas fa-map-marker-alt text-blue-500 text-xl mb-2"></i>
+                        <span class="font-medium">South Yarra</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                        <i class="fas fa-map-marker-alt text-blue-500 text-xl mb-2"></i>
+                        <span class="font-medium">Footscray</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                        <i class="fas fa-map-marker-alt text-blue-500 text-xl mb-2"></i>
+                        <span class="font-medium">Carlton</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                        <i class="fas fa-map-marker-alt text-blue-500 text-xl mb-2"></i>
+                        <span class="font-medium">St Kilda</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                        <i class="fas fa-map-marker-alt text-blue-500 text-xl mb-2"></i>
+                        <span class="font-medium">Brunswick</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                        <i class="fas fa-map-marker-alt text-blue-500 text-xl mb-2"></i>
+                        <span class="font-medium">Prahran</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                        <i class="fas fa-map-marker-alt text-blue-500 text-xl mb-2"></i>
+                        <span class="font-medium">Fitzroy</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                        <i class="fas fa-map-marker-alt text-blue-500 text-xl mb-2"></i>
+                        <span class="font-medium">Kew</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                        <i class="fas fa-map-marker-alt text-blue-500 text-xl mb-2"></i>
+                        <span class="font-medium">Hawthorn</span>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <p class="text-gray-600">
+                        Don't see your suburb? <a href="#" class="text-blue-500 hover:underline">Contact us</a> to check availability.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-blue-500 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold">Ready to Experience the <span class="text-yellow-300">MelbourneSparkle</span> Difference?</h2>
+                    <p class="mt-4 text-lg">
+                        Book your cleaning service today and enjoy a spotless home without lifting a finger.
+                    </p>
+                    <div class="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="bg-white hover:bg-gray-100 text-blue-500 px-6 py-3 rounded-full text-lg font-medium transition-all transform hover:scale-105 shadow-lg">
+                            Book Online Now
+                        </button>
+                        <button class="border-2 border-white hover:bg-blue-600 text-white px-6 py-3 rounded-full text-lg font-medium transition-all transform hover:scale-105">
+                            <i class="fas fa-phone-alt mr-2"></i> 1300 123 456
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-12 lg:mt-0">
+                    <div class="bg-white rounded-xl shadow-xl p-6 text-gray-800">
+                        <h3 class="text-xl font-bold mb-4">Quick Quote</h3>
+                        <form>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Service Type</label>
+                                    <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                        <option>Residential Cleaning</option>
+                                        <option>Commercial Cleaning</option>
+                                        <option>Carpet Cleaning</option>
+                                        <option>End of Lease Clean</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Bedrooms</label>
+                                    <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4+</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Frequency</label>
+                                    <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                        <option>One-time</option>
+                                        <option>Weekly</option>
+                                        <option>Fortnightly</option>
+                                        <option>Monthly</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full font-medium transition-all transform hover:scale-105">
+                                    Get Instant Quote
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-broom text-blue-500 text-xl"></i>
+                        </div>
+                        <span class="ml-2 text-xl font-bold">Melbourne<span class="text-blue-500">Sparkle</span></span>
+                    </div>
+                    <p class="mt-4 text-gray-400">
+                        Melbourne's trusted experts in sparkling spaces. Eco-friendly cleaning solutions tailored to your needs.
+                    </p>
+                    <div class="mt-6 flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold">Services</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Residential Cleaning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Commercial Cleaning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Carpet Cleaning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">End of Lease Clean</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Window Cleaning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Oven Cleaning</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold">Company</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Our Team</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Testimonials</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold">Contact</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2 text-blue-400"></i>
+                            <span class="text-gray-400">123 Clean Street, Melbourne VIC 3000</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2 text-blue-400"></i>
+                            <span class="text-gray-400">1300 123 456</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-blue-400"></i>
+                            <span class="text-gray-400">hello@melbournesparkle.com.au</span>
+                        </li>
+                    </ul>
+                    
+                    <h3 class="text-lg font-semibold mt-6">Newsletter</h3>
+                    <p class="mt-2 text-gray-400">Get cleaning tips and special offers</p>
+                    <form class="mt-4 flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 w-full">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="mt-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">
+                    © 2023 MelbourneSparkle. All rights reserved.
+                </p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Chat Button -->
+    <div class="fixed bottom-8 right-8">
+        <button class="w-16 h-16 rounded-full bg-blue-500 hover:bg-blue-600 text-white flex items-center justify-center shadow-lg transform transition-all hover:scale-110 floating">
+            <i class="fas fa-comment-dots text-2xl"></i>
+        </button>
+    </div>
+
+    <!-- 3D Animation Script -->
+    <script>
+        // Simple Three.js scene for background
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if Three.js is loaded
+            if (typeof THREE !== 'undefined') {
+                const container = document.getElementById('threejs-container');
+                
+                // Set up scene
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ alpha: true });
+                renderer.setSize(container.offsetWidth, container.offsetHeight);
+                container.appendChild(renderer.domElement);
+                
+                // Add some floating objects
+                const geometry = new THREE.SphereGeometry(0.5, 32, 32);
+                const material = new THREE.MeshBasicMaterial({ 
+                    color: 0xe0f2fe,
+                    transparent: true,
+                    opacity: 0.6
+                });
+                
+                const bubbles = [];
+                const bubbleCount = 10;
+                
+                for (let i = 0; i < bubbleCount; i++) {
+                    const bubble = new THREE.Mesh(geometry, material);
+                    bubble.position.x = (Math.random() - 0.5) * 10;
+                    bubble.position.y = (Math.random() - 0.5) * 10;
+                    bubble.position.z = (Math.random() - 0.5) * 10;
+                    bubble.userData = {
+                        speedX: Math.random() * 0.02 - 0.01,
+                        speedY: Math.random() * 0.02 - 0.01,
+                        speedZ: Math.random() * 0.02 - 0.01
+                    };
+                    scene.add(bubble);
+                    bubbles.push(bubble);
+                }
+                
+                camera.position.z = 5;
+                
+                // Animation loop
+                function animate() {
+                    requestAnimationFrame(animate);
+                    
+                    bubbles.forEach(bubble => {
+                        bubble.position.x += bubble.userData.speedX;
+                        bubble.position.y += bubble.userData.speedY;
+                        bubble.position.z += bubble.userData.speedZ;
+                        
+                        // Bounce off edges
+                        if (Math.abs(bubble.position.x) > 5) bubble.userData.speedX *= -1;
+                        if (Math.abs(bubble.position.y) > 5) bubble.userData.speedY *= -1;
+                        if (Math.abs(bubble.position.z) > 5) bubble.userData.speedZ *= -1;
+                        
+                        // Rotate
+                        bubble.rotation.x += 0.01;
+                        bubble.rotation.y += 0.01;
+                    });
+                    
+                    renderer.render(scene, camera);
+                }
+                
+                animate();
+                
+                // Handle window resize
+                window.addEventListener('resize', function() {
+                    camera.aspect = container.offsetWidth / container.offsetHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(container.offsetWidth, container.offsetHeight);
+                });
+            }
+            
+            // Service card hover effects
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const angleX = (y - centerY) / 20;
+                    const angleY = (centerX - x) / 20;
+                    
+                    card.style.transform = `translateY(-10px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+                });
+            });
+            
+            // Testimonial avatar hover effects
+            const testimonialAvatars = document.querySelectorAll('.testimonial-avatar');
+            testimonialAvatars.forEach(avatar => {
+                avatar.addEventListener('mousemove', (e) => {
+                    const rect = avatar.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const posX = x - centerX;
+                    const posY = y - centerY;
+                    
+                    avatar.style.transform = `scale(1.05) rotateY(${posX / 20}deg) rotateX(${-posY / 20}deg)`;
+                });
+                
+                avatar.addEventListener('mouseleave', () => {
+                    avatar.style.transform = 'scale(1) rotateY(0) rotateX(0)';
+                });
+            });
+            
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
