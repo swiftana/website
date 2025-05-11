@@ -17,7 +17,7 @@
         }
         
         .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1627905646269-7f034dcc5738?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
             background-size: cover;
             background-position: center;
             color: white;
@@ -247,12 +247,15 @@
                             Customer-friendly, fast and affordable, tailored cleaning solutions for busy households and growing businesses in Melbourne. 
                         </p>
                         <div class="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-lg font-medium transition-all transform hover:scale-105 shadow-lg">
-                                Book Now in 60 Seconds
-                            </button>
-                            <button class="border-2 border-white text-white hover:bg-white hover:bg-opacity-10 px-6 py-3 rounded-full text-lg font-medium transition-all transform hover:scale-105">
+                            <a href="tel:+610466275631" 
+                                class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-lg font-medium transition-all transform hover:scale-105 shadow-lg inline-block text-center">
+                                    Book Now in 60 Seconds
+                            </a>
+
+                            <a  class="border-2 border-white text-white hover:bg-white hover:bg-opacity-10 px-6 py-3 rounded-full text-lg font-medium transition-all transform hover:scale-105">
                                 <i class="fas fa-phone-alt mr-2"></i> 0466275631
-                            </button>
+                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -539,8 +542,8 @@
                                 <td class="py-4">Floors, Coat racks, Shoe storage, Light fixtures</td>
                             </tr>
                             <tr>
-                                <td class="py-4 font-medium">Offices</td>
-                                <td class="py-4">Desks, Electronics, Shelving, Floors</td>
+                                <td class="py-4 font-medium">Office Address</td>
+                                <td class="py-4">241 City Road, Southbank 3006</td>
                             </tr>
                         </tbody>
                     </table>
@@ -875,7 +878,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
                 <div>
-                    <h2 class="text-3xl font-bold">Ready to experience the Swiftana difference?</h2>
+                    <h2 class="text-3xl font-bold">CBD Southbank Ready to experience the Swiftana difference?</h2>
                     <p class="mt-4 text-lg">
                         Book your cleaning service today and enjoy a spotless home without lifting a finger.
                     </p>
@@ -931,18 +934,18 @@
                         Melbourne's trusted experts in sparkling spaces. Premium cleaning solutions tailored to your needs.
                     </p>
                     <div class="mt-6 flex space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
+                        <!-- <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i> -->
+                        <!-- </a> -->
+                        <a href="https://www.instagram.com/swiftana.au?igsh=c3VhN25ybXNkNHc1" class="text-gray-400 hover:text-white">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
+                        <!-- <a href="#" class="text-gray-400 hover:text-white">
                             <i class="fab fa-twitter"></i>
                         </a>
                         <a href="#" class="text-gray-400 hover:text-white">
                             <i class="fab fa-linkedin-in"></i>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
                 
@@ -1090,108 +1093,95 @@
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
-    <!-- Firebase Initialization and Form Handling -->
+    <!-- Firebase Configuration -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Your web app's Firebase configuration
-            const firebaseConfig = {
-                apiKey: "YOUR_API_KEY",
-                authDomain: "YOUR_AUTH_DOMAIN",
-                projectId: "YOUR_PROJECT_ID",
-                storageBucket: "YOUR_STORAGE_BUCKET",
-                messagingSenderId: "YOUR_SENDER_ID",
-                appId: "YOUR_APP_ID"
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDQORICJS9wCZVBvd7yA68CRPmtP5Ey8sc",
+            authDomain: "website-swiftana.firebaseapp.com",
+            databaseURL: "https://website-swiftana-default-rtdb.firebaseio.com",
+            projectId: "website-swiftana",
+            storageBucket: "website-swiftana.appspot.com",
+            messagingSenderId: "759800702225",
+            appId: "1:759800702225:web:3ffc406c4002d6dd80d8b0"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Function to write form data to Realtime Database
+        function writeFormData(formType, formData) {
+            const newPostKey = firebase.database().ref().child(formType).push().key;
+            const updates = {};
+            updates['/' + formType + '/' + newPostKey] = formData;
+            
+            return firebase.database().ref().update(updates);
+        }
+
+        // Quote Form Submission
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('button[type="submit"]');
+            
+            const formData = {
+                serviceType: this.serviceType.value,
+                bedrooms: this.bedrooms.value,
+                frequency: this.frequency.value,
+                timestamp: Date.now()
             };
 
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
-            const db = firebase.firestore();
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
 
-            // Enable Firestore in test mode (for development only)
-            // IMPORTANT: Update security rules before production deployment
-            db.settings({
-                experimentalForceLongPolling: true
-            });
+            writeFormData('queries', formData)
+                .then(() => {
+                    alert('Quote request submitted successfully!');
+                    this.reset();
+                })
+                .catch((error) => {
+                    console.error('Error writing document: ', error);
+                    alert('Error submitting form: ' + error.message);
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Get Instant Quote';
+                });
+        });
 
-            // Quote Form Submission
-            const quoteForm = document.getElementById('quoteForm');
-            const quoteSubmit = quoteForm.querySelector('button[type="submit"]');
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('button[type="submit"]');
             
-            quoteForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                // Disable submit button during submission
-                quoteSubmit.disabled = true;
-                quoteSubmit.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
-                
-                try {
-                    const formData = {
-                        serviceType: quoteForm.querySelector('[name="serviceType"]').value,
-                        bedrooms: quoteForm.querySelector('[name="bedrooms"]').value,
-                        frequency: quoteForm.querySelector('[name="frequency"]').value,
-                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                    };
+            const formData = {
+                name: this.name.value,
+                email: this.email.value,
+                phone: this.phone.value,
+                message: this.message.value,
+                timestamp: Date.now()
+            };
 
-                    // Save to Firestore
-                    await db.collection("queries").add(formData);
-                    
-                    // Show success message
-                    alert("Your quote request has been submitted successfully! We'll contact you shortly.");
-                    
-                    // Reset form
-                    quoteForm.reset();
-                } catch (error) {
-                    console.error("Error submitting quote:", error);
-                    alert("There was an error submitting your quote. Please try again.");
-                } finally {
-                    // Re-enable submit button
-                    quoteSubmit.disabled = false;
-                    quoteSubmit.textContent = 'Get Instant Quote';
-                }
-            });
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
-            // Contact Form Submission
-            const contactForm = document.getElementById('contactForm');
-            const contactSubmit = document.getElementById('contactSubmit');
-            
-            contactForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                // Disable submit button during submission
-                contactSubmit.disabled = true;
-                contactSubmit.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
-                
-                try {
-                    const formData = {
-                        name: contactForm.querySelector('[name="name"]').value,
-                        email: contactForm.querySelector('[name="email"]').value,
-                        phone: contactForm.querySelector('[name="phone"]').value,
-                        message: contactForm.querySelector('[name="message"]').value,
-                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                    };
-
-                    // Save to Firestore
-                    await db.collection("contacts").add(formData);
-                    
-                    // Show success message
-                    alert("Your message has been sent successfully! We'll get back to you soon.");
-                    
-                    // Reset form
-                    contactForm.reset();
-                } catch (error) {
-                    console.error("Error sending message:", error);
-                    alert("There was an error sending your message. Please try again.");
-                } finally {
-                    // Re-enable submit button
-                    contactSubmit.disabled = false;
-                    contactSubmit.textContent = 'Send Message';
-                }
-            });
+            writeFormData('contacts', formData)
+                .then(() => {
+                    alert('Message sent successfully!');
+                    this.reset();
+                })
+                .catch((error) => {
+                    console.error('Error writing document: ', error);
+                    alert('Error sending message: ' + error.message);
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                });
         });
     </script>
-
     <!-- Security Rules Reminder -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
