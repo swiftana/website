@@ -169,7 +169,7 @@
         /* Added for recommended badge */
         .recommended-badge {
             position: absolute;
-            top: -25px;
+            top: -30px;
             right: 40px;
             transform: none;
   /* Perfect vertical centering */
@@ -276,7 +276,24 @@
                                             </select>
                                         </div>
                                         <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">House Type</label>
+                                            <select name="frequency" class="form-input form-select w-full" required>
+                                                <option value="One-time">Studio</option>
+                                                <option value="Weekly">Townhouse</option>
+                                                <option value="Fortnightly">Apartment</option>
+                                            </select>
+                                        </div>
+                                        <div>
                                             <label class="block text-sm font-medium text-gray-700 mb-1">Bedrooms</label>
+                                            <select name="bedrooms" class="form-input form-select w-full" required>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4+">4+</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Number of Bathrooms</label>
                                             <select name="bedrooms" class="form-input form-select w-full" required>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -350,7 +367,7 @@
             
             <!-- Service Tabs -->
             <div class="mt-8">
-                <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <div class="flex flex-wrap justify-center gap-8 mb-8">
                     <button class="tab-button px-6 py-2 rounded-full font-medium transition-all bg-blue-100 text-blue-500 active" data-tab="one-off">
                         One-Off Cleaning
                     </button>
@@ -537,10 +554,7 @@
                                 <td class="py-4 font-medium">Laundry</td>
                                 <td class="py-4">Washing machine, Dryer, Sink, Shelving</td>
                             </tr>
-                            <tr class="border-b border-gray-200">
-                                <td class="py-4 font-medium">Entryways</td>
-                                <td class="py-4">Floors, Coat racks, Shoe storage, Light fixtures</td>
-                            </tr>
+                            
                             
                         </tbody>
                     </table>
@@ -556,7 +570,7 @@
                             </tr>
                             <tr class="border-b border-gray-200">
                                 <td class="py-4 font-medium">Bathrooms</td>
-                                <td class="py-4">Grout cleaning, Tile scrubbing, Shower doors, Exhaust fans</td>
+                                <td class="py-4">Grout cleaning, Tile scrubbing, Shower doors</td>
                             </tr>
                             <tr class="border-b border-gray-200">
                                 <td class="py-4 font-medium">Bedrooms</td>
@@ -568,7 +582,7 @@
                             </tr>
                             <tr class="border-b border-gray-200">
                                 <td class="py-4 font-medium">Laundry</td>
-                                <td class="py-4">Behind machines, Lint traps, Utility sinks, Storage areas</td>
+                                <td class="py-4">Lint traps, Utility sinks, Storage areas</td>
                             </tr>
                             <tr class="border-b border-gray-200">
                                 <td class="py-4 font-medium">Entryways</td>
@@ -588,11 +602,11 @@
                         <tbody>
                             <tr class="border-b border-gray-200">
                                 <td class="py-4 font-medium">Kitchen</td>
-                                <td class="py-4">Oven interior, Range hood, Behind fridge, Inside cabinets</td>
+                                <td class="py-4">Oven interior, Range hood, Inside cabinets</td>
                             </tr>
                             <tr class="border-b border-gray-200">
                                 <td class="py-4 font-medium">Bathrooms</td>
-                                <td class="py-4">Tile grout, Shower screen, Exhaust fan, Caulking</td>
+                                <td class="py-4">Tile grout, Shower screen</td>
                             </tr>
                             <tr class="border-b border-gray-200">
                                 <td class="py-4 font-medium">Bedrooms</td>
@@ -604,7 +618,7 @@
                             </tr>
                             <tr class="border-b border-gray-200">
                                 <td class="py-4 font-medium">Laundry</td>
-                                <td class="py-4">Behind machines, Utility sink, Lint traps, Storage areas</td>
+                                <td class="py-4"> Utility sink, Lint traps, Storage areas</td>
                             </tr>
                             <tr class="border-b border-gray-200">
                                 <td class="py-4 font-medium">Entryways</td>
@@ -613,6 +627,10 @@
                             <tr>
                                 <td class="py-4 font-medium">Patios</td>
                                 <td class="py-4">Outdoor furniture, Floor surfaces, Railings, Light fixtures</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 font-medium"><b>Additional Services</b></td>
+                                <td class="py-4"><b>Balcony : 29$, Fridge : 19$q</b></td>
                             </tr>
                         </tbody>
                     </table>
@@ -778,7 +796,7 @@
                                     <img class="w-full h-auto" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Professional cleaner">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
                                     <div class="absolute bottom-0 left-0 right-0 p-6">
-                                        <div class="flex items-center">
+                                        <!-- <div class="flex items-center">
                                             <div class="flex-shrink-0">
                                                 <img class="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/women/32.jpg" alt="Cleaner">
                                             </div>
@@ -793,7 +811,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -851,6 +869,42 @@
             </div>
         </div>
     </section>
+    
+    <!-- Price Match Section (Responsive, No Image, Animated Icon) -->
+<section id="price-match" class="bg-gray-100 py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col-reverse lg:flex-row items-center bg-white rounded-2xl shadow-lg overflow-hidden">
+      <!-- Text Content -->
+      <div class="w-full lg:w-1/2 p-6 sm:p-10 text-center lg:text-left">
+        <!-- Badge -->
+        <span class="inline-block bg-green-500 text-white text-xs sm:text-sm font-semibold rounded-full px-3 py-1 shadow-md mb-4">
+          Price Match Guarantee
+        </span>
+        <h2 class="mt-2 text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
+          Found a Lower Price? We’ll Match It — or Beat It!
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-gray-700">
+          Just send us a competitor's quote, and we’ll offer you the same or better value. No hassle, no compromise on quality. Because we believe a sparkling clean space shouldn’t come with a hefty price tag.
+        </p>
+        <div class="mt-6">
+          <a href="/contact" class="inline-block bg-blue-500 hover:bg-blue-600 text-white text-base sm:text-lg font-medium px-6 py-3 rounded-full transition-transform transform hover:scale-105 shadow-md">
+            Get a Price Match →
+          </a>
+        </div>
+      </div>
+      <!-- Animated Icon Content -->
+      <div class="w-full lg:w-1/2 flex justify-center items-center p-6 sm:p-10 bg-gray-50">
+        <!-- Heroicon Tag with Bounce Animation -->
+        <div class="animate-bounce">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 7l10 10M17 7H7v10" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8">
@@ -858,10 +912,9 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center">
-                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-                            <i class="fas fa-broom text-blue-500 text-xl"></i>
+                        <div class="flex-shrink-0">
+                            <img src="logo_plain.svg" alt="Swiftana Logo" class="h-10 w-auto">
                         </div>
-                        <span class="ml-2 text-xl font-bold">Swift<span class="text-blue-500">ana</span></span>
                     </div>
                     <p class="mt-4 text-gray-400">
                         Melbourne's trusted experts in sparkling spaces. Premium cleaning solutions tailored to your needs.
@@ -935,7 +988,7 @@
             
             <div class="mt-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
                 <p class="text-gray-400 text-sm">
-                    © 2023 Swiftana. All rights reserved.
+                    © 2025 Swiftana. All rights reserved.
                 </p>
                 <div class="mt-4 md:mt-0 flex space-x-6">
                     <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
