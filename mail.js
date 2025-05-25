@@ -25,14 +25,32 @@ function submitForm(e){
   var phone = getElementVal('phone');
   var message = getElementVal('message');
 
-  saveMessages(name, email, phone, message);
+  console.log("Submitting form with data:", {name, email, phone, message});
 
+  saveMessages(name, email, phone, message)
+    .then(() => {
+      console.log("Data saved successfully.");
+      const alertDiv = document.querySelector('.alert');
+      alertDiv.style.display = "block";
+
+      // Hide alert after 3 seconds
+      setTimeout(() => {
+        alertDiv.style.display = "none";
+      }, 3000);
+
+      // Clear form
+      document.getElementById('contactForm').reset();
+    })
+    .catch((error) => {
+      console.error("Error saving data:", error);
+      alert("There was an error submitting the form. Please try again later.");
+    });
 }
 
 const saveMessages = (name, email, phone,message) => {
   var newContactForm = contactFormDB.push();
 
-  newContactForm.set({
+  return newContactForm.set({
     name : name,
     email : email,
     phone : phone,
