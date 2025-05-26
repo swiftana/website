@@ -8,14 +8,17 @@ const firebaseConfig = {
     appId: "1:515266503481:web:138a9d8dab97dc2fd37ee8"
   };
 
-  //initialize firebase
+//initialize firebase
 firebase.initializeApp(firebaseConfig);
 
-  //reference for database
+//reference for contactForm database
 var contactFormDB = firebase.database().ref('contactForm');
 
-document.getElementById('contactForm').addEventListener('submit',submitForm);
+//reference for quoteForm database
+var quoteFormDB = firebase.database().ref('quoteForm');
 
+// Existing contactForm submit handler
+document.getElementById('contactForm').addEventListener('submit',submitForm);
 
 function submitForm(e){
   e.preventDefault();
@@ -25,11 +28,11 @@ function submitForm(e){
   var phone = getElementVal('phone');
   var message = getElementVal('message');
 
-  console.log("Submitting form with data:", {name, email, phone, message});
+  console.log("Submitting contactForm with data:", {name, email, phone, message});
 
   saveMessages(name, email, phone, message)
     .then(() => {
-      console.log("Data saved successfully.");
+      console.log("Contact form data saved successfully.");
       const alertDiv = document.querySelector('.alert');
       alertDiv.style.display = "block";
 
@@ -42,8 +45,8 @@ function submitForm(e){
       document.getElementById('contactForm').reset();
     })
     .catch((error) => {
-      console.error("Error saving data:", error);
-      alert("There was an error submitting the form. Please try again later.");
+      console.error("Error saving contact form data:", error);
+      alert("There was an error submitting the contact form. Please try again later.");
     });
 }
 
@@ -60,4 +63,45 @@ const saveMessages = (name, email, phone,message) => {
 
 const getElementVal = (id) => {
   return document.getElementById(id).value;
+};
+
+// New quoteForm submit handler
+document.getElementById('quoteForm').addEventListener('submit', submitQuoteForm);
+
+function submitQuoteForm(e) {
+  e.preventDefault();
+
+  var serviceType = document.querySelector('#quoteForm select[name="serviceType"]').value;
+  var houseType = document.querySelector('#quoteForm select[name="frequency"]').value; // house type select has name frequency in index.html
+  var bedrooms = document.querySelector('#quoteForm select[name="bedrooms"]').value;
+  var bathrooms = document.querySelectorAll('#quoteForm select[name="bedrooms"]')[1].value; // second select with name bedrooms is bathrooms
+  var frequency = document.querySelectorAll('#quoteForm select[name="frequency"]')[1].value; // second select with name frequency is frequency
+
+  console.log("Submitting quoteForm with data:", {serviceType, houseType, bedrooms, bathrooms, frequency});
+
+  saveQuote(serviceType, houseType, bedrooms, bathrooms, frequency)
+    .then(() => {
+      console.log("Quote form data saved successfully.");
+      // Show alert for quoteForm submission success
+      alert("Your quote request has been submitted successfully.");
+
+      // Clear quoteForm
+      document.getElementById('quoteForm').reset();
+    })
+    .catch((error) => {
+      console.error("Error saving quote form data:", error);
+      alert("There was an error submitting the quote form. Please try again later.");
+    });
+}
+
+const saveQuote = (serviceType, houseType, bedrooms, bathrooms, frequency) => {
+  var newQuoteForm = quoteFormDB.push();
+
+  return newQuoteForm.set({
+    serviceType: serviceType,
+    houseType: houseType,
+    bedrooms: bedrooms,
+    bathrooms: bathrooms,
+    frequency: frequency,
+  });
 };
