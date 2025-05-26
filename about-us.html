@@ -1,0 +1,158 @@
+<!-- about.html - FINAL VERSION -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Swiftana</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <nav class="bg-white shadow-sm fixed w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex items-center">
+                <div class="flex-shrink-0">
+                    <img src="logo.svg" alt="Swiftana Logo" class="h-10 w-auto">
+                </div>
+            </div>
+            <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                <a href="index.html" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Home</a>
+                <a href="about-us.html" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">About Us</a>
+                <a href="services.html" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Services</a>
+                <a href="careers.html" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Careers</a>
+                <a href="terms-and-conditions.html" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Terms & Conditions</a>
+            <a href="tel:+61466275631" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-all transform hover:scale-105 shadow-md inline-flex items-center">
+                <i class="fas fa-phone-alt mr-2"></i> Book Now
+            </a>
+
+            </div>
+            <div class="-mr-2 flex items-center md:hidden">
+                <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="text-gray-900 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="about-us.html" class="text-gray-900 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium">About Us</a>
+                <a href="services.html" class="text-gray-900 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium">Services</a>
+                <a href="careers.html" class="text-gray-900 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium">Careers</a>
+                <a href="terms-and-conditions.html" class="text-gray-900 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium">Terms & Conditions</a>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-base font-medium transition-all transform hover:scale-105 shadow-md w-full mt-2">
+                    <i class="fas fa-phone-alt mr-2"></i> Book Now
+                </button>
+            </div>
+        </div>
+    </nav>
+
+  <main class="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <h1 class="text-4xl font-bold text-center mb-8">About <span class="text-blue-500">Swiftana</span></h1>
+      <p class="text-lg text-center text-gray-600 mb-12">Melbourne's trusted cleaning experts delivering premium cleaning services.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div>
+          <h2 class="text-2xl font-semibold mb-4">Our Service</h2>
+          <p class="mb-4 text-gray-700">
+            Swiftana is a customer-friendly cleaning startup offering fast and affordable cleaning solutions for busy households and growing businesses in Melbourne. With an emphasis on convenience and hygiene, Swiftana uses trained staff and quality products to provide hassle-free, high-quality cleaning—swiftly.
+          </p>
+          <p class="mb-4 text-gray-700">
+            We offer residential cleaning including regular, deep, seasonal, and move-out cleans; commercial cleaning for offices, retail spaces, gyms, medical facilities, and construction sites; as well as specialized services such as carpet, upholstery, window cleaning, and eco-friendly options. Custom add-ons include fridge/oven cleans, bed linen changes, and laundry folding.
+          </p>
+        </div>
+        <div>
+          <h2 class="text-2xl font-semibold mb-4">Our Difference</h2>
+          <p class="mb-4 text-gray-700">
+            Founded to meet the growing demand for reliable, professional, and flexible cleaning services that can be booked online and customized easily, Swiftana combines high-quality cleaning with quick and easy access through online bookings, digital invoicing, and tailored cleaning plans. Our approach, fast turnaround, and subscription discounts create a superior customer experience.
+          </p>
+          <div class="bg-blue-50 p-6 rounded-xl mt-4">
+            <h3 class="text-lg font-medium text-gray-900 mb-2">Our Clients</h3>
+            <p class="text-gray-700">
+              Time-poor professionals and families, real estate agencies and property managers, SMEs, co-working spaces, event venues, and environmentally conscious consumers.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="bg-gray-50 p-6 rounded-xl text-center">
+          <div class="mx-auto h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+            <i class="fas fa-bolt text-blue-500 text-xl"></i>
+          </div>
+          <h4 class="text-lg font-medium text-gray-900">Fast Service</h4>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-xl text-center">
+          <div class="mx-auto h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+            <i class="fas fa-leaf text-blue-500 text-xl"></i>
+          </div>
+          <h4 class="text-lg font-medium text-gray-900">Customer-Friendly</h4>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-xl text-center">
+          <div class="mx-auto h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+            <i class="fas fa-paw text-blue-500 text-xl"></i>
+          </div>
+          <h4 class="text-lg font-medium text-gray-900">Affordable Pricing</h4>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-xl text-center">
+          <div class="mx-auto h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+            <i class="fas fa-percent text-blue-500 text-xl"></i>
+          </div>
+          <h4 class="text-lg font-medium text-gray-900">Reliable Cleaning</h4>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer (copied from index.html) -->
+  <footer class="bg-gray-900 text-white pt-12 pb-8 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <img src="logo_plain.svg" class="h-10 mb-4" alt="Logo">
+          <p class="text-gray-400">Melbourne's trusted experts in sparkling spaces. Premium cleaning solutions tailored to your needs.</p>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Company</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="terms-and-conditions.html">Terms</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Contact</h4>
+          <ul class="text-gray-400 space-y-2">
+            <li><i class="fas fa-phone mr-2"></i>0466 275 631</li>
+            <li><i class="fas fa-envelope mr-2"></i>Swiftana.au@gmail.com</li>
+            <li><i class="fas fa-map-marker-alt mr-2"></i>241 City Road, Southbank 3006</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-8 text-center text-gray-500 text-sm">© 2025 Swiftana. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('mobile-menu-button').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
