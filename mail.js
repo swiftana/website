@@ -71,15 +71,18 @@ document.getElementById('quoteForm').addEventListener('submit', submitQuoteForm)
 function submitQuoteForm(e) {
   e.preventDefault();
 
+  var name = document.getElementById('quoteName').value;
+  var email = document.getElementById('quoteEmail').value;
+  var phone = document.getElementById('quotePhone').value;
   var serviceType = document.querySelector('#quoteForm select[name="serviceType"]').value;
   var houseType = document.querySelector('#quoteForm select[name="frequency"]').value; // house type select has name frequency in index.html
   var bedrooms = document.querySelector('#quoteForm select[name="bedrooms"]').value;
   var bathrooms = document.querySelectorAll('#quoteForm select[name="bedrooms"]')[1].value; // second select with name bedrooms is bathrooms
   var frequency = document.querySelectorAll('#quoteForm select[name="frequency"]')[1].value; // second select with name frequency is frequency
 
-  console.log("Submitting quoteForm with data:", {serviceType, houseType, bedrooms, bathrooms, frequency});
+  console.log("Submitting quoteForm with data:", {name, email, phone, serviceType, houseType, bedrooms, bathrooms, frequency});
 
-  saveQuote(serviceType, houseType, bedrooms, bathrooms, frequency)
+  saveQuote(name, email, phone, serviceType, houseType, bedrooms, bathrooms, frequency)
     .then(() => {
       console.log("Quote form data saved successfully.");
       // Show alert for quoteForm submission success
@@ -94,10 +97,13 @@ function submitQuoteForm(e) {
     });
 }
 
-const saveQuote = (serviceType, houseType, bedrooms, bathrooms, frequency) => {
+const saveQuote = (name, email, phone, serviceType, houseType, bedrooms, bathrooms, frequency) => {
   var newQuoteForm = quoteFormDB.push();
 
   return newQuoteForm.set({
+    name: name,
+    email: email,
+    phone: phone,
     serviceType: serviceType,
     houseType: houseType,
     bedrooms: bedrooms,

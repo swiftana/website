@@ -207,6 +207,8 @@
 
     </style>
 </head>
+    </style>
+</head>
 <body>
     
     <!-- ✅ Updated Navigation with Sticky Header and Single <nav> -->
@@ -283,57 +285,70 @@
                         <div class="aspect-w-10 aspect-h-6 sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none">
                             <div class="bg-white rounded-xl shadow-xl p-6 text-gray-800 floating">
                                 <h3 class="text-xl font-bold mb-4">Get Instant Quote</h3>
-                                <form id="quoteForm">
-                                    <div class="space-y-4">
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700 mb-1">Service Type</label>
-                                            <select name="serviceType" class="form-input form-select w-full" required>
-                                                <option value="Residential Cleaning">Residential Cleaning</option>
-                                                <option value="Commercial Cleaning">Commercial Cleaning</option>
-                                                <option value="Carpet Cleaning">Carpet Cleaning</option>
-                                                <option value="End of Lease Clean">End of Lease Clean</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700 mb-1">House Type</label>
-                                            <select name="frequency" class="form-input form-select w-full" required>
-                                                <option value="One-time">Studio</option>
-                                                <option value="Weekly">Townhouse</option>
-                                                <option value="Fortnightly">Apartment</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700 mb-1">Bedrooms</label>
-                                            <select name="bedrooms" class="form-input form-select w-full" required>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4+">4+</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700 mb-1">Number of Bathrooms</label>
-                                            <select name="bedrooms" class="form-input form-select w-full" required>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4+">4+</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700 mb-1">Frequency</label>
-                                            <select name="frequency" class="form-input form-select w-full" required>
-                                                <option value="One-time">One-time</option>
-                                                <option value="Weekly">Weekly</option>
-                                                <option value="Fortnightly">Fortnightly</option>
-                                                <option value="Monthly">Monthly</option>
-                                            </select>
-                                        </div>
-                                        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full font-medium transition-all transform hover:scale-105">
-                                            Get Instant Quote
-                                        </button>
-                                    </div>
-                                </form>
+<form id="quoteForm">
+    <div class="space-y-4">
+        
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+            <input type="text" name="name" id="quoteName" class="form-input w-full" placeholder="Your Name" required>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input type="email" name="email" id="quoteEmail" class="form-input w-full" placeholder="Your Email" required>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+            <input type="tel" name="phone" id="quotePhone" class="form-input w-full" placeholder="Your Phone Number" required>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Service Type</label>
+            <select name="serviceType" class="form-input form-select w-full" required>
+                <option value="Residential Cleaning">Residential Cleaning</option>
+                <option value="Commercial Cleaning">Commercial Cleaning</option>
+                <option value="Carpet Cleaning">Carpet Cleaning</option>
+                <option value="End of Lease Clean">End of Lease Clean</option>
+            </select>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">House Type</label>
+            <select name="frequency" class="form-input form-select w-full" required>
+                <option value="One-time">Studio</option>
+                <option value="Weekly">Townhouse</option>
+                <option value="Fortnightly">Apartment</option>
+            </select>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Bedrooms</label>
+            <select name="bedrooms" class="form-input form-select w-full" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4+">4+</option>
+            </select>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Number of Bathrooms</label>
+            <select name="bedrooms" class="form-input form-select w-full" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4+">4+</option>
+            </select>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Frequency</label>
+            <select name="frequency" class="form-input form-select w-full" required>
+                <option value="One-time">One-time</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Fortnightly">Fortnightly</option>
+                <option value="Monthly">Monthly</option>
+            </select>
+        </div>
+        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full font-medium transition-all transform hover:scale-105">
+            Get Instant Quote
+        </button>
+    </div>
+</form>
                             </div>
                         </div>
                     </div>
