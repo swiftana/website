@@ -1,330 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swiftana | Careers</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8fafc;
-        }
-        .careers-section {
-            padding: 4rem 0;
-            background-color: #ffffff;
-        }
-        .careers-card {
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            max-width: 100%;
-            margin: 0 auto;
-        }
-        .form-input {
-            padding: 14px 16px;
-            font-size: 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-        .form-input:focus {
-            border-color: #4299e1;
-            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
-            outline: none;
-        }
-        .form-textarea {
-            padding: 14px 16px;
-            font-size: 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            resize: vertical;
-            min-height: 150px;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-        .form-textarea:focus {
-            border-color: #4299e1;
-            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
-            outline: none;
-        }
-        .submit-button {
-            padding: 14px 28px;
-            font-size: 16px;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
-            background-color: #4299e1;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .submit-button:hover {
-            background-color: #3182ce;
-            transform: translateY(-2px);
-        }
-        .floating-form {
-            animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-        .fixed-menu {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: white;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        .main-content {
-            margin-top: 80px;
-            padding: 20px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swiftana | Careers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+          body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8fafc;
+        margin: 0;
+        padding: 0;
+      }
 
-        #mobile-menu {
-            display: none;
-            transition: all 0.3s ease;
-            max-height: 100vh;
-            overflow-y: auto;
-            position: fixed;
-            top: 64px;
-            left: 0;
-            right: 0;
-            z-index: 9999;
-        }
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 9999;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
 
-        #mobile-menu.active {
-            display: block;
-        }
+      main, .main-content {
+        margin-top: 4rem; /* Push content below fixed navbar */
+      }
 
-    </style>
+      #mobile-menu {
+        display: none;
+        transition: all 0.3s ease;
+        max-height: 100vh;
+        overflow-y: auto;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background-color: white;
+        z-index: 1000;
+      }
+
+      #mobile-menu.active {
+        display: block;
+      }
+
+  </style>
 </head>
 <body>
-    
-<!-- ✅ Single Sticky <nav> with Mobile Menu -->
-<nav class="bg-white shadow-sm fixed w-full z-50">
+  <nav class="bg-white shadow-sm fixed w-full z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex items-center">
-                <div class="flex-shrink-0">
-                    <img src="logo.svg" alt="Swiftana Logo" class="h-10 w-auto">
-                </div>
-            </div>
-            <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
-                <a href="index.html" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Home</a>
-                <a href="about-us.html" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">About Us</a>
-                <a href="services.html" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Services</a>
-                <a href="careers.html" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Work with Us</a>
-                <a href="terms-and-conditions.html" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Terms & Conditions</a>
-                <a href="tel:+61466275631" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-all transform hover:scale-105 shadow-md inline-flex items-center">
-                    <i class="fas fa-phone-alt mr-2"></i> Book Now
-                </a>
-            </div>
-            <div class="-mr-2 flex items-center md:hidden">
-                <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <img src="logo.svg" alt="Swiftana Logo" class="h-10 w-auto" />
         </div>
+        <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+          <a href="index.html" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Home</a>
+          <a href="about-us.html" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">About Us</a>
+          <a href="services.html" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Services</a>
+          <a href="careers.html" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Work with Us</a>
+          <a href="terms-and-conditions.html" class="text-gray-900 hover:text-blue-500 px-3 py-2 text-sm font-medium">Terms & Conditions</a>
+          <a href="tel:+61466275631" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-all transform hover:scale-105 shadow-md inline-flex items-center">
+            <i class="fas fa-phone-alt mr-2"></i> Book Now
+          </a>
+        </div>
+        <div class="-mr-2 flex items-center md:hidden">
+          <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+            <span class="sr-only">Open main menu</span>
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
     </div>
-
-    <!-- ✅ Mobile menu within same <nav> -->
     <div id="mobile-menu" class="md:hidden bg-white shadow-lg">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="index.html" class="text-gray-900 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-            <a href="about-us.html" class="text-gray-900 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium">About Us</a>
-            <a href="services.html" class="text-gray-900 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium">Services</a>
-            <a href="careers.html" class="text-gray-900 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium">Careers</a>
-            <a href="terms-and-conditions.html" class="text-gray-900 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium">Terms & Conditions</a>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-base font-medium transition-all transform hover:scale-105 shadow-md w-full mt-2">
-                <i class="fas fa-phone-alt mr-2"></i> Book Now
-            </button>
-        </div>
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-blue-500">Home</a>
+        <a href="about-us.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-blue-500">About Us</a>
+        <a href="services.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-blue-500">Services</a>
+        <a href="careers.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-blue-500">Careers</a>
+        <a href="terms-and-conditions.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-blue-500">Terms & Conditions</a>
+        <a href="tel:+61466275631" class="block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-base font-medium text-center shadow-md mt-2">
+          <i class="fas fa-phone-alt mr-2"></i> Book Now
+        </a>
+      </div>
     </div>
-</nav>
+  </nav>
 
+  <main class="main-content">
+    <section class="hero-section bg-blue-500 text-white py-16">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Join Our Team</h1>
+        <p class="text-xl">Be part of Melbourne's premier cleaning service team</p>
+      </div>
+    </section>
 
+    <section class="py-16 bg-white">
+      <div class="max-w-3xl mx-auto px-4">
+        <form class="space-y-6 bg-white p-6 rounded-xl shadow-md">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Full Name</label>
+            <input type="text" required class="form-input mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Email Address</label>
+            <input type="email" required class="form-input mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Phone Number</label>
+            <input type="tel" required class="form-input mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Resume</label>
+            <input type="file" required class="form-input mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" accept=".pdf,.doc,.docx" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Cover Letter</label>
+            <textarea required class="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-md font-semibold transition">Apply Now</button>
+        </form>
+      </div>
+    </section>
+  </main>
 
-
-    <main class="main-content">
-        <section class="hero-section bg-blue-500 text-white py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-8">
-                        Join Our Team
-                    </h1>
-                    <p class="text-xl max-w-2xl mx-auto">
-                        Be part of Melbourne's premier cleaning service team
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="careers-section">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="careers-card floating-form">
-                    <form id="careerForm">
-                        <div class="space-y-6">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                                <input type="text" class="form-input" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                                <input type="email" class="form-input" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                                <input type="tel" class="form-input" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Resume</label>
-                                <input type="file" class="form-input" accept=".pdf,.doc,.docx" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Cover Letter</label>
-                                <textarea class="form-textarea" rows="4" required></textarea>
-                            </div>
-                            <button type="submit" class="submit-button">
-                                Apply Now
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <img src="logo_plain.svg" alt="Swiftana Logo" class="h-10 w-auto">
-                        </div>
-                    </div>
-                    <p class="mt-4 text-gray-400">
-                        Melbourne's trusted experts in sparkling spaces. Premium cleaning solutions tailored to your needs.
-                    </p>
-                    <div class="mt-6 flex space-x-6">
-                        <a href="https://m.facebook.com/profile.php?id=61575320964633" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-facebook-f"></i> 
-                        </a> 
-                        <a href="https://www.instagram.com/swiftana.au?igsh=c3VhN25ybXNkNHc1" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold">Services</h3>
-                    <ul class="mt-4 space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Residential Cleaning</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Commercial Cleaning</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Carpet Cleaning</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">End of Lease Clean</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Window Cleaning</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Oven Cleaning</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold">Company</h3>
-                    <ul class="mt-4 space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Our Team</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold">Contact</h3>
-                    <ul class="mt-4 space-y-2">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-2 text-blue-400"></i>
-                            <span class="text-gray-400">241 City Road, Southbank 3006</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone-alt mr-2 text-blue-400"></i>
-                            <span class="text-gray-400">0466275631</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope mr-2 text-blue-400"></i>
-                            <span class="text-gray-400">Swiftana.au@gmail.com</span>
-                        </li>
-                    </ul>
-                    
-                    <h3 class="text-lg font-semibold mt-6">Newsletter</h3>
-                    <p class="mt-2 text-gray-400">Get cleaning tips and special offers</p>
-                    <form class="mt-4 flex">
-                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 w-full">
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-r-lg">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="mt-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm">
-                    © 2025 Swiftana. All rights reserved.
-                </p>
-                <div class="mt-4 md:mt-0 flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
-                    <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
-                    <a href="#" class="text-gray-400 hover:text-white text-sm">Sitemap</a>
-                </div>
-            </div>
+  <footer class="bg-gray-900 text-white pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div>
+          <img src="logo_plain.svg" alt="Swiftana Logo" class="h-10 w-auto" />
+          <p class="mt-4 text-gray-400">Melbourne's trusted experts in sparkling spaces. Premium cleaning solutions tailored to your needs.</p>
+          <div class="mt-6 flex space-x-6">
+            <a href="https://m.facebook.com/profile.php?id=61575320964633" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/swiftana.au?igsh=c3VhN25ybXNkNHc1" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+          </div>
         </div>
-    </footer>
-
-    <!-- Floating Chat Button -->
-    <div class="fixed bottom-8 right-8">
-        <button class="w-16 h-16 rounded-full bg-blue-500 hover:bg-blue-600 text-white flex items-center justify-center shadow-lg transform transition-all hover:scale-110 floating">
-            <i class="fas fa-comment-dots text-2xl"></i>
-        </button>
+        <div>
+          <h3 class="text-lg font-semibold">Services</h3>
+          <ul class="mt-4 space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-white">Residential Cleaning</a></li>
+            <li><a href="#" class="hover:text-white">Commercial Cleaning</a></li>
+            <li><a href="#" class="hover:text-white">Carpet Cleaning</a></li>
+            <li><a href="#" class="hover:text-white">End of Lease Clean</a></li>
+            <li><a href="#" class="hover:text-white">Window Cleaning</a></li>
+            <li><a href="#" class="hover:text-white">Oven Cleaning</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold">Company</h3>
+          <ul class="mt-4 space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-white">About Us</a></li>
+            <li><a href="#" class="hover:text-white">Our Team</a></li>
+            <li><a href="#" class="hover:text-white">Careers</a></li>
+            <li><a href="#" class="hover:text-white">Blog</a></li>
+            <li><a href="#" class="hover:text-white">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold">Contact</h3>
+          <ul class="mt-4 space-y-2 text-gray-400">
+            <li class="flex items-start"><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>241 City Road, Southbank 3006</li>
+            <li class="flex items-center"><i class="fas fa-phone-alt mr-2 text-blue-400"></i>0466275631</li>
+            <li class="flex items-center"><i class="fas fa-envelope mr-2 text-blue-400"></i>Swiftana.au@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
+        © 2025 Swiftana. All rights reserved.
+      </div>
     </div>
+  </footer>
 
-    
-<script>
+  <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const menuButton = document.getElementById('mobile-menu-button');
-    const menu = document.getElementById('mobile-menu');
-    const icon = menuButton.querySelector('i');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-    if (menuButton && menu && icon) {
-      menuButton.addEventListener('click', function () {
-        const isOpen = menu.classList.toggle('active');
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', function () {
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !expanded);
+        mobileMenu.classList.toggle('active');
 
-        if (isOpen) {
-          icon.classList.remove('fa-bars');
-          icon.classList.add('fa-times');
-        } else {
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
+        const icon = this.querySelector('i');
+        if (icon) {
+          icon.classList.toggle('fa-bars');
+          icon.classList.toggle('fa-times');
         }
       });
     }
   });
 </script>
 
-
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-
 </body>
 </html>
-
-    
